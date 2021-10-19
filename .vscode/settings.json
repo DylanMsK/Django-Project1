@@ -1,0 +1,6 @@
+{
+    "python.defaultInterpreterPath": "/Users/dylan/.pyenv/shims/python",
+    "python.formatting.blackPath": "black",
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Path": "flake8"
+}
