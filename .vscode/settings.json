@@ -1,6 +1,10 @@
 {
-    "python.defaultInterpreterPath": "/Users/dylan/.pyenv/shims/python",
     "python.formatting.blackPath": "black",
     "python.linting.flake8Enabled": true,
-    "python.linting.flake8Path": "flake8"
+    "python.linting.flake8Path": "flake8",
+    "python.linting.flake8Args": [
+        "--max-line-length=120",
+        "--ignore=E302,W292",
+    ],
+    "editor.fontSize": 16,
 }
