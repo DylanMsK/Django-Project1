@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
-from articles.models import Article
+from articles import models, forms
 
 
 def article_search_view(request):
@@ -11,8 +12,8 @@ def article_search_view(request):
         q = None
 
     try:
-        obj = Article.objects.get(id=q)
-    except Article.DoesNotExist:
+        obj = models.Article.objects.get(id=q)
+    except models.Article.DoesNotExist:
         obj = None
         pass
 
@@ -21,12 +22,25 @@ def article_search_view(request):
     }
     return render(request, "articles/search.html", context)
 
+@login_required
+def article_create_view(reqeust):
+    form = forms.ArticleForm(reqeust.POST or None)
+    context = {
+        "form": form,
+    }
+    if form.is_valid():
+        obj = form.save()
+        context["form"] = forms.ArticleForm(reqeust.POST or None)
+        context["object"] = obj
+        context["created"] = True
+    return render(reqeust, "articles/create.html", context)
+
 def article_detail_view(request, id=None):
     article_obj = None
     if id is not None:
         try:
-            article_obj = Article.objects.get(id=id)
-        except Article.DoesNotExist:
+            article_obj = models.Article.objects.get(id=id)
+        except models.Article.DoesNotExist:
             pass
 
     context = {

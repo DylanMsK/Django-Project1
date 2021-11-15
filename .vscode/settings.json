@@ -7,4 +7,7 @@
         "--ignore=E302,W292",
     ],
     "editor.fontSize": 16,
+    "files.associations": {
+        "*.html": "html"
+    }
 }
